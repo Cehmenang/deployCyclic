@@ -1,5 +1,5 @@
-import express from 'express'
-import Book from './model.js'
+const express = require('express')
+const Book = require('./model.js')
 
 class Route {
        constructor(){

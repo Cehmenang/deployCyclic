@@ -1,8 +1,7 @@
-import Router from './router.js'
-import mongoose from 'mongoose'
-import express from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
+const Router = require('./router.js')
+const mongoose = require('mongoose')
+const express = require('express')
+require('dotenv').config()
 
 const app = express()
 
