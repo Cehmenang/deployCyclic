@@ -1,25 +1,28 @@
-import connectDatabase from './database.js'
 import Router from './router.js'
+import mongoose from 'mongoose'
 import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
 
-class App {
-       constructor(){
-              this.app = express()
-              this.middleware()
-              this.connection()
-       }
-       middleware(){
-              this.app.use(express.urlencoded({extended: true}))
-              this.app.use(express.json())
-              this.app.use(Router)
-       }
-       async connection(){
-              await connectDatabase()
-              this.app.listen(process.env.PORT, ()=>console.info(`Server and Database are Connected at http://localhost:${process.env.PORT}`))
-                     
+const app = express()
+
+const connectDB = async()=>{
+       try{
+              await mongoose.set({ 'strictQuery': false })
+              const conn = await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+              console.log(`MongoDB Connected ${conn.connection.host}`)
+       }catch(err){ 
+              console.error(err)
+              process.exit(1)
        }
 }
 
-const app = new App().app
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use(Router)
+
+connectDB().then(()=>{
+       app.listen(process.env.PORT, ()=>console.info(`Server and Database are Connected at http://localhost:${process.env.PORT}`))
+})
+
+
