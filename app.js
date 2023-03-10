@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(Router)
 
 connectDB().then(()=>{
-       app.listen(process.env.PORT, ()=>console.info(`Server and Database are Connected at http://localhost:${process.env.PORT}`))
+       app.listen(process.env.PORT || 8000, ()=>console.info(`Server and Database are Connected at http://localhost:${process.env.PORT}`))
 })
 
 
