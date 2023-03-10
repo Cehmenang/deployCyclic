@@ -1,5 +1,5 @@
-const express = require('express')
-const Book = require('./model.js')
+import express from 'express'
+import Book from './model.js'
 
 class Route {
        constructor(){
@@ -33,4 +33,4 @@ class Route {
        }
 }
 
-module.exports.Route = new Route().router
+export default new Route().router
