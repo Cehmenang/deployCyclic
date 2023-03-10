@@ -33,4 +33,4 @@ class Route {
        }
 }
 
-module.exports = new Route().router
+module.exports.Route = new Route().router
