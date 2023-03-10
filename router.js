@@ -33,4 +33,4 @@ class Route {
        }
 }
 
-export default new Route().router
+module.exports = new Route().router
